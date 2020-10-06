@@ -1,3 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap");
+body {
+  margin: 0;
+}
+
 .nav {
   background-color: black;
   width: 100%;
@@ -40,10 +45,28 @@
   text-decoration: none;
 }
 
+.footer {
+  background-color: black;
+  width: 100%;
+  height: 100px;
+}
+
+.content {
+  background-color: blue;
+}
+
 .layout {
+  min-height: 100vh;
   height: 100%;
   width: 100%;
-  border: solid red 2px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: auto 1fr auto;
+      grid-template-rows: auto 1fr auto;
+}
+
+* {
+  font-family: 'Ubuntu', sans-serif;
 }
 
 * {
