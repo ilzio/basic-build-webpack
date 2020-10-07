@@ -1,6 +1,8 @@
 // plugins imported
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 
 
 
@@ -15,8 +17,10 @@ module.exports = {
 
     // output directory and filename 
     output: {
+        filename: "./index.js",
         path: path.resolve(__dirname, 'dist'),
-        filename: "./index.js"
+        // used within server script to make sure files are served correctly on http://localhost:3000
+        publicPath: '/',
     },
 
     // DEVELOPMENT TOOLS
@@ -116,6 +120,8 @@ module.exports = {
             title: 'This is title given by nothing',
             myPageHeader: 'Example of d',
         }),
+        // clears output.path directory, + unused assets after every successful rebuild.
+        new CleanWebpackPlugin()
 
        
 
