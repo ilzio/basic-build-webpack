@@ -9,16 +9,29 @@ var path = require('path');
 
 // main configuration object.
 module.exports = {
-    // Path to your entry point
+
+    // Path to your entry point    
     entry: "./src/index.js",
+
     // output directory and filename 
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: "./index.js"
     },
 
-    // tells webpack how to transform files 
+    // DEVELOPMENT TOOLS
+    mode: 'development',
 
+    // creates inline source map (which map compiled code back to original source code for debugging purposes)
+    devtool: 'inline-source-map',
+
+    // tells webpack development server location of files to be served (default localhost:8080)
+    devServer: {
+        contentBase: './dist',
+    },
+
+    // LOADERS (tell webpack how to transform files )
+    
     module: {
         rules: [
             // babel transpiler for ES6 Javascript
@@ -85,22 +98,29 @@ module.exports = {
 
         ]
     },
-    // plugins are needed to handle things that loaders can't 
+    // PLUGINS: needed to handle things that loaders can't 
     plugins: [
         // extracts css to separate file
         new MiniCssExtractPlugin({
             filename: "style.css"
         }),
+        // dinamically creates index.html
         new HtmlWebpackPlugin({
             // hashes for caching purposes
             hash: true,
-            title: 'This is title given by plugin',
-            myPageHeader: 'Example of variable',
+            // template file for generating html
             template: './src/index.html',
-            filename: 'index.html' //relative to root of the application
-        })
+            // name of generated html
+            filename: 'index.html',
+            // variables passed to plugin
+            title: 'This is title given by nothing',
+            myPageHeader: 'Example of d',
+        }),
+
+       
+
     ],
 
-    mode: 'development',
+
 
 }
