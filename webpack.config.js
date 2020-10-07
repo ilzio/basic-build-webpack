@@ -1,5 +1,7 @@
 // plugins imported
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 
 // needed to work with directories
@@ -31,7 +33,7 @@ module.exports = {
                 }
             },
             {
-            // .sass, .scss or .css files
+                // .sass, .scss or .css files
                 test: /\.(sa|sc|c)ss$/,
                 // Set loaders to transform files. loaders in the "use array" will be applied from last to first / bottom to top!!
                 use: [
@@ -39,7 +41,7 @@ module.exports = {
                         // After all CSS loaders have finished working we use this plugin to get all transformed CSS and extracts it into separate (config in plugins array)
                         // single bundled file
                         loader: MiniCssExtractPlugin.loader
-                    }, 
+                    },
                     {
                         // This loader resolves url() and @imports inside CSS
                         loader: "css-loader",
@@ -83,13 +85,20 @@ module.exports = {
 
         ]
     },
-    // plugins are needed to handle things that loaders can't such as extract transformed css into separate files
+    // plugins are needed to handle things that loaders can't 
     plugins: [
-    // activate plugin
+        // extracts css to separate file
         new MiniCssExtractPlugin({
             filename: "style.css"
+        }),
+        new HtmlWebpackPlugin({
+            // hashes for caching purposes
+            hash: true,
+            title: 'This is title given by plugin',
+            myPageHeader: 'Example of variable',
+            template: './src/index.html',
+            filename: 'index.html' //relative to root of the application
         })
-
     ],
 
     mode: 'development',

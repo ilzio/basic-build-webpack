@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
     <link rel="stylesheet" href="./dist/style.css">
     <script src="./dist/index.js"></script>
 </head>
@@ -20,7 +20,10 @@
             </div>
         </nav>
     </header>
-    <main class="content"></main>
+    <main class="content">
+        <!-- example of including a variable inside -->
+        <!-- <h1> <%= htmlWebpackPlugin.options.myPageHeader %> </h1> -->
+    </main>
     <footer class="footer"></footer>
 </body>
 
