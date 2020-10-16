@@ -12,21 +12,24 @@ var path = require('path');
 // main configuration object.
 module.exports = {
 
-    // Path to your entry point    
-    entry: "./src/index.js",
+    // Path to your entry point  [using babel polyfill for async-await] 
+    entry: ['babel-polyfill', './src/index.js'],
 
     // output directory and filename 
     output: {
-        filename: "./index.js",
         path: path.resolve(__dirname, 'dist'),
-        // used within server script to make sure files are served correctly on http://localhost:3000
-        publicPath: '/',
+        filename: "js/[name].js",
+
+        // used within server script to make sure files are served correctly on http://localhost:3000 -> check!!
+        publicPath: '',
     },
 
+    
+    
     // DEVELOPMENT TOOLS
     mode: 'development',
 
-    // creates inline source map (which map compiled code back to original source code for debugging purposes)
+    // creates inline source map (which maps compiled code back to original source code for debugging purposes)
     devtool: 'inline-source-map',
 
     // tells webpack development server location of files to be served (default localhost:8080)
@@ -104,12 +107,10 @@ module.exports = {
     },
     // PLUGINS: needed to handle things that loaders can't 
     plugins: [
-        // extracts css to separate file
-        new MiniCssExtractPlugin({
-            filename: "style.css"
-        }),
+       
         // dinamically creates index.html
         new HtmlWebpackPlugin({
+            
             // hashes for caching purposes
             hash: true,
             // template file for generating html
@@ -118,7 +119,11 @@ module.exports = {
             filename: 'index.html',
             // variables passed to plugin
             title: 'This is title given by nothing',
-            myPageHeader: 'Example of d',
+            myPageHeader: 'Example of another variable',
+        }),
+        // extracts css to separate file
+        new MiniCssExtractPlugin({
+            filename: "styles/[name].css"
         }),
         // clears output.path directory, + unused assets after every successful rebuild.
         new CleanWebpackPlugin()
