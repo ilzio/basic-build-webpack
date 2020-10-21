@@ -9,3 +9,4 @@ Also contains configurations for development purposes:
 - webpack dev-server
 - custom express server 
 
+This is far from being a complete project, indeed, it is intended as a sort of documentation for building more complicated stuff in the foreseeable future. 
